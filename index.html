@@ -47,8 +47,10 @@
         };
 
         const mirror = document.getElementById("mirror");
+        mirror.setAttribute('muted', '');
+        mirror.setAttribute('playsinline', '');
         mirror.srcObject = await navigator.mediaDevices.getUserMedia(constraints);
-        mirror.play();
+        await mirror.play();
       })();
     </script>
   </body>
