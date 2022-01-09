@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Look In The Mirror</title>
+    <meta name="description" content="When you need to look into a mirror">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <style>
+      body {
+        border: 0;
+        margin: 0;
+        padding: 0;
+      }
+      #mirror {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="mirror"></video>
+    <script>
+      (async () => {
+        if (!navigator?.mediaDevices?.getUserMedia) {
+          alert("Your browser does not support The Mirror 😢");
+          return;
+        }
+
+        const constraints = {
+          video: {
+            width: {
+              min: 1280,
+              ideal: 1920,
+            },
+            height: {
+              min: 720,
+              ideal: 1080,
+            },
+            facingMode: "user",
+          },
+        };
+
+        const mirror = document.getElementById("mirror");
+        mirror.srcObject = await navigator.mediaDevices.getUserMedia(constraints);
+        mirror.play();
+      })();
+    </script>
+  </body>
+</html>
